@@ -1,0 +1,15 @@
+/.env.local
+/.env.local.php
+/.env.*.local
+/vendor/
+/Del
+
+/phpunit.xml
+.phpunit.result.cache
+
+/logs/
+tools/cache/*
+tools/logs/*
+tools/report/*
+tools/**/vendor
+/*.cache

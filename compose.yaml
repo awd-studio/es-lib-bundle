@@ -1,0 +1,14 @@
+services:
+
+    awdes-bundle-php-fpm:
+        container_name: "awdes-bundle-php-fpm"
+        build:
+            context: ./docker/php-fpm
+            args:
+                PHP_VERSION: ${PHP_VERSION}
+                uid: ${UID-1000}
+                gid: ${GID-1000}
+        volumes:
+            - ${APP_ROOT_DIR}:${APP_CONTAINER_DIR}
+            - ./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini
+            - ./docker/php-fpm/conf.d:/usr/local/etc/php/conf.d

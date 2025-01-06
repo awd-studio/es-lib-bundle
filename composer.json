@@ -1,0 +1,146 @@
+{
+  "name": "awd-studio/es-lib-bundle",
+  "description": "A symfony bundle for the AWD event-sourcing library",
+  "license": "MIT",
+  "type": "symfony-bundle",
+  "version": "0.0.1",
+  "authors": [
+    {
+      "name": "Anton Karpov",
+      "email": "awd.com.ua@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.3",
+    "symfony/config": "^7.2",
+    "symfony/dependency-injection": "^7.2",
+    "symfony/http-kernel": "^7.2"
+  },
+  "require-dev": {
+    "dg/bypass-finals": "^1.4",
+    "ergebnis/composer-normalize": "^2.45",
+    "roave/security-advisories": "dev-latest",
+    "phpspec/prophecy": "^1.20",
+    "phpspec/prophecy-phpunit": "^2.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "AwdEs\\Bundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AwdEs\\Bundle\\Tests\\": "tests/",
+      "AwdEs\\Bundle\\Tests\\Integration\\": "tests/Integration/",
+      "AwdEs\\Bundle\\Tests\\Shared\\": "tests/Shared/",
+      "AwdEs\\Bundle\\Tests\\Unit\\": "tests/Unit/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true
+    }
+  },
+  "scripts": {
+    "ca": [
+      "@phpstan-analyse",
+      "@php-cs-fixer-dry",
+      "@php-cs-fixer-tests-dry",
+      "@rector-dry-run",
+      "@rector-tests-dry-run"
+    ],
+    "code-fix": [
+      "@php-cs-fixer-fix",
+      "@php-cs-fixer-tests-fix",
+      "@rector",
+      "@rector-tests"
+    ],
+    "dev-install-php-cs-fixer": [
+      "mkdir -p tools/cache/php-cs-fixer",
+      "composer install --working-dir=tools/php-cs-fixer --prefer-dist --no-progress --no-interaction"
+    ],
+    "dev-install-phpstan": [
+      "mkdir -p tools/cache/phpstan",
+      "composer install --working-dir=tools/phpstan --prefer-dist --no-progress --no-interaction"
+    ],
+    "dev-install-phpunit": [
+      "mkdir -p tools/cache/phpunit",
+      "mkdir -p tools/logs",
+      "mkdir -p tools/report"
+    ],
+    "dev-install-rector": [
+      "mkdir -p tools/cache/rector",
+      "composer install --working-dir=tools/rector --prefer-dist --no-progress --no-interaction"
+    ],
+    "dev-tools-setup": [
+      "@dev-install-phpstan",
+      "@dev-install-php-cs-fixer",
+      "@dev-install-rector"
+    ],
+    "dev-tools-update": [
+      "@dev-update-phpstan",
+      "@dev-update-php-cs-fixer",
+      "@dev-update-rector"
+    ],
+    "dev-update-php-cs-fixer": [
+      "composer update --with-all-dependencies --working-dir=tools/php-cs-fixer --prefer-dist --no-progress --no-interaction"
+    ],
+    "dev-update-phpstan": [
+      "composer update --with-all-dependencies --working-dir=tools/phpstan --prefer-dist --no-progress --no-interaction"
+    ],
+    "dev-update-rector": [
+      "composer update --with-all-dependencies --working-dir=tools/rector --prefer-dist --no-progress --no-interaction"
+    ],
+    "php-cs-fixer-clear-cache": "rm -rf tools/cache/php-cs-fixer",
+    "php-cs-fixer-dry": "@php-cs-fixer-run fix --dry-run --diff",
+    "php-cs-fixer-fix": "@php-cs-fixer-run fix --diff",
+    "php-cs-fixer-tests-dry": "@php-cs-fixer-tests-run fix --dry-run --diff",
+    "php-cs-fixer-tests-fix": "@php-cs-fixer-tests-run fix --diff",
+    "php-cs-fixer-run": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=tools/php-cs-fixer/.php-cs-fixer.php",
+    "php-cs-fixer-tests-run": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=tools/php-cs-fixer/.php-cs-fixer-tests.php",
+    "phpstan-analyse": "@phpstan-run analyse -v",
+    "phpstan-clear-cache": "rm -rf tools/cache/phpstan",
+    "phpstan-run": "tools/phpstan/vendor/bin/phpstan --configuration=tools/phpstan/phpstan.neon",
+    "phpunit": "vendor/bin/phpunit tests",
+    "rector": "@rector-process --config=tools/rector/rector.php",
+    "rector-dry-run": "@rector --dry-run",
+    "rector-process": "tools/rector/vendor/bin/rector process",
+    "rector-tests": "@rector-process --config=tools/rector/rector-tests.php",
+    "rector-tests-dry-run": "@rector-tests --dry-run",
+    "test": [
+      "@ca",
+      "@phpunit"
+    ]
+  },
+  "scripts-aliases": {
+    "code-fix": [
+      "cf"
+    ],
+    "dev-tools-setup": [
+      "dev-setup",
+      "dev-i"
+    ],
+    "dev-tools-update": [
+      "dev-up",
+      "dev-u"
+    ],
+    "php-cs-fixer-clear-cache": [
+      "cs-cc"
+    ],
+    "php-cs-fixer-dry": [
+      "cs-dry",
+      "cs-check"
+    ],
+    "php-cs-fixer-fix": [
+      "cs-fix",
+      "cs"
+    ],
+    "phpstan-analyse": [
+      "phpstan",
+      "stan"
+    ],
+    "phpstan-clear-cache": [
+      "phpstan-cc"
+    ]
+  }
+}

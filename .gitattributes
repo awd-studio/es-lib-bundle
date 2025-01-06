@@ -1,0 +1,25 @@
+# Auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# These files are text and should be normalized (Convert crlf => lf)
+.gitattributes  text
+.gitignore      text
+*.md            text
+*.env           text
+*.yml           text
+*.yaml          text
+*.xml           text
+*.xml.*         text
+*.env.*         text
+*.php           text
+
+# Exclude files from exporting
+/.phpstorm.meta.php export-ignore
+/bin                export-ignore
+/build              export-ignore
+/example            export-ignore
+/docs               export-ignore
+/tests              export-ignore
+/phpunit.xml.dist   export-ignore
+/.gitattributes     export-ignore
+/.gitignore         export-ignore

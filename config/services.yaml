@@ -1,0 +1,31 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    _instanceof:
+        AwdEs\Event\Storage\Fetcher\Handling\CriteriaHandlingCase:
+            tags: [ 'awd_es.event.storage.fetcher.handling.criteria_case' ]
+
+    AwdEs\:
+        resource: '../vendor/awd-studio/es-lib/src/'
+        autowire: true
+        autoconfigure: true
+
+    AwdEs\Aggregate\Persistence\UoW\EntityUnitOfWork: ~
+    AwdEs\Aggregate\Persistence\UoW\IdentityMapUnitOfWorkDecorator: ~
+
+    AwdEs\Aggregate\Persistence\UoW\UnitOfWork:
+        class: AwdEs\Aggregate\Persistence\UoW\IdentityMapUnitOfWorkDecorator
+        decorates: AwdEs\Aggregate\Persistence\UoW\EntityUnitOfWork
+
+    AwdEs\Aggregate\Persistence\Transaction\NestedTransactionManagerDecorator: ~
+    AwdEs\EsLibBundle\AwdEs\Aggregate\Persistence\Transaction\EntityManagerTransactionManager: ~
+
+    AwdEs\Aggregate\Persistence\Transaction\TransactionManager:
+        class: AwdEs\Aggregate\Persistence\Transaction\NestedTransactionManagerDecorator
+        decorates: AwdEs\EsLibBundle\AwdEs\Aggregate\Persistence\Transaction\EntityManagerTransactionManager
+
+    AwdEs\Event\Storage\Fetcher\Handling\CasesEventFetcher:
+        arguments:
+            $cases: !tagged_iterator 'awd_es.event.storage.fetcher.handling.criteria_case'

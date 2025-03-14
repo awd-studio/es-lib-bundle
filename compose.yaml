@@ -1,14 +1,30 @@
 services:
 
-    awdes-bundle-php-fpm:
-        container_name: "awdes-bundle-php-fpm"
+    php-fpm:
+        container_name: ${DOCKER_SERVICE_NAME_PHP}
+        user: "${SYS_USER_UID}:${SYS_USER_UID}"
         build:
             context: ./docker/php-fpm
             args:
                 PHP_VERSION: ${PHP_VERSION}
-                uid: ${UID-1000}
-                gid: ${GID-1000}
+                SYS_USER_UID: ${SYS_USER_UID}
+                SYS_USER_GID: ${SYS_USER_GID}
+                SYS_USER_NAME: ${SYS_USER_NAME}
+                APP_WORK_DIR: ${APP_WORK_DIR}
         volumes:
-            - ${APP_ROOT_DIR}:${APP_CONTAINER_DIR}
+            - ${APP_ROOT_DIR}:${APP_WORK_DIR}
             - ./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini
             - ./docker/php-fpm/conf.d:/usr/local/etc/php/conf.d
+            - /home/awd/Projects:/opt/php/packages # REMOVE!!!
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        networks:
+            - es-bundle-network
+        command:
+            - ${FASTCGI_PASS_HOST}
+        expose:
+            - ${FASTCGI_PASS_PORT}
+
+networks:
+    es-bundle-network:
+        driver: bridge

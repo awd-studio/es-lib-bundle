@@ -2,11 +2,11 @@
 /.env.local.php
 /.env.*.local
 /vendor/
-/Del
 
 /phpunit.xml
 .phpunit.result.cache
 
+/var/
 /logs/
 tools/cache/*
 tools/logs/*

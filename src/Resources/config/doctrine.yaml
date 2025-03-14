@@ -1,0 +1,16 @@
+doctrine:
+    dbal:
+        types:
+            ulid_id: AwdEs\EsLibBundle\Doctrine\DBAL\Types\UlidIdType
+            jsonb_or_json: AwdEs\EsLibBundle\Doctrine\DBAL\Types\JsonbOrJsonType
+            awd_datetime: AwdEs\EsLibBundle\Doctrine\DBAL\Types\IDateTimeType
+
+    orm:
+        auto_generate_proxy_classes: true
+        mappings:
+            EsLibBundle:
+                is_bundle: true
+                type: xml
+                dir: 'src/Resources/config/doctrine'
+                prefix: 'AwdEs\EsLibBundle\AwdEs\Event\Record'
+                alias: EsLibBundle

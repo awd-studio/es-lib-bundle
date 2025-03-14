@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AwdEs\Bundle\Tests\Shared;
+namespace AwdEs\EsLibBundle\Tests\Shared;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;

@@ -8,7 +8,13 @@ services:
             tags: [ 'awd_es.event.storage.fetcher.handling.criteria_case' ]
 
     AwdEs\:
-        resource: '../vendor/awd-studio/es-lib/src/'
+        resource: '../../../vendor/awd-studio/es-lib/src/'
+        autowire: true
+        autoconfigure: true
+
+    AwdEs\EsLibBundle\:
+        resource: '../../'
+        exclude: '../../{DependencyInjection}'
         autowire: true
         autoconfigure: true
 

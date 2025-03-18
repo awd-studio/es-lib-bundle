@@ -17,7 +17,7 @@ final class EsLibBundle extends AbstractBundle
     #[\Override] // @phpstan-ignore missingType.iterableValue
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $container->import('../config/services.yaml');
+        $container->import($this->getPath() . '/src/Resources/config/services.yaml');
     }
 
     #[\Override]

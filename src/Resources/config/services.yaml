@@ -8,7 +8,7 @@ services:
             tags: [ 'awd_es.event.storage.fetcher.handling.criteria_case' ]
 
     AwdEs\:
-        resource: '../../../vendor/awd-studio/es-lib/src/'
+        resource: '%kernel.project_dir%/vendor/awd-studio/es-lib/src/'
         autowire: true
         autoconfigure: true
 

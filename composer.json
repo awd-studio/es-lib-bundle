@@ -9,12 +9,6 @@
       "email": "awd.com.ua@gmail.com"
     }
   ],
-  "repositories": [
-    {
-      "type": "path",
-      "url": "/opt/php/packages/es/main"
-    }
-  ],
   "require": {
     "php": ">=8.3",
     "symfony/config": "^7.2",

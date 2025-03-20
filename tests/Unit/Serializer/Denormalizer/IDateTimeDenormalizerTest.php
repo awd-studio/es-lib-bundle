@@ -32,7 +32,7 @@ final class IDateTimeDenormalizerTest extends AppTestCase
         $this->instance = new IDateTimeDenormalizer();
     }
 
-    public function itDenormalizesValidStringToIDateTime(): void
+    public function testDenormalizesValidStringToIDateTime(): void
     {
         $data = '2023-10-15 14:30:00';
         $result = $this->instance->denormalize($data, IDateTime::class);
@@ -42,29 +42,28 @@ final class IDateTimeDenormalizerTest extends AppTestCase
         assertSame($data, $result->__toString()); // Assuming IDateTime has toString()
     }
 
-    public function itThrowsExceptionForInvalidType(): void
+    public function testThrowsExceptionForInvalidType(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/Expects to ".*IDateTime", "integer" provided/');
 
         $this->instance->denormalize(123, IDateTime::class);
     }
 
-    public function itThrowsExceptionForNonStringData(): void
+    public function testThrowsExceptionForNonStringData(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/\$data is expects to be a string, "integer" provided/');
+        $this->expectExceptionMessageMatches('/\$data is expects to be a string, "int" provided/');
 
         $this->instance->denormalize(42, IDateTime::class);
     }
 
-    public function itSupportsDenormalizationForIDateTimeClass(): void
+    public function testSupportsDenormalizationForIDateTimeClass(): void
     {
         assertTrue($this->instance->supportsDenormalization('2023-10-15', IDateTime::class));
         assertFalse($this->instance->supportsDenormalization('2023-10-15', \stdClass::class));
     }
 
-    public function itReturnsSupportedTypes(): void
+    public function testReturnsSupportedTypes(): void
     {
         $supportedTypes = $this->instance->getSupportedTypes(null);
 

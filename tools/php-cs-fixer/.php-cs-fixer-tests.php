@@ -37,7 +37,7 @@ $config
         'function_declaration' => ['closure_function_spacing' => 'none', 'closure_fn_spacing' => 'none'],
         'no_break_comment' => false,
         'single_line_empty_body' => true,
-        'php_unit_attributes' => true,
+//        'php_unit_attributes' => true,
         'php_unit_construct' => true,
         'php_unit_data_provider_return_type' => true,
         'php_unit_data_provider_static' => true,

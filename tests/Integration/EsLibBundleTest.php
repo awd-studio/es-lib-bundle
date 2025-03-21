@@ -50,9 +50,6 @@ final class EsLibBundleTest extends AppTestCase
                         'dbal' => [
                             'url' => 'sqlite:///:memory:',
                         ],
-                        'orm' => [
-                            'auto_mapping' => true,
-                        ],
                     ]);
                 });
             }

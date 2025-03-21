@@ -44,10 +44,16 @@ tests: ## Run all tests
 	$(COMPOSER) test
 	$(DOCKER_COMPOSE) stop
 
-.PHONY: unit-test
-unit-test: ## Run unit tests
+.PHONY: phpunit
+phpunit: ## Runs phpunit
 	$(DOCKER_COMPOSE) up -d php-fpm
-	$(PHP) bin/phpunit --testdox tests/unit/
+	$(COMPOSER) phpunit
+	$(DOCKER_COMPOSE) stop
+
+.PHONY: unit-tests
+unit-tests: ## Run unit tests
+	$(DOCKER_COMPOSE) up -d php-fpm
+	$(PHP) vendor/bin/phpunit --testdox tests/Unit/
 	$(DOCKER_COMPOSE) stop
 
 ## —— 🐳 Docker ———————————————————————————————————————————————————————————————

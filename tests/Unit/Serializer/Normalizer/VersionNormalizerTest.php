@@ -15,6 +15,11 @@ use function PHPUnit\Framework\assertFalse;
 use function PHPUnit\Framework\assertSame;
 use function PHPUnit\Framework\assertTrue;
 
+/**
+ * @coversDefaultClass \AwdEs\EsLibBundle\Serializer\Normalizer\VersionNormalizer
+ *
+ * @internal
+ */
 final class VersionNormalizerTest extends AppTestCase
 {
     private VersionNormalizer $instance;

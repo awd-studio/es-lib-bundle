@@ -17,6 +17,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\Serializer\Normalizer\UlidIdNormalizer
+ *
+ * @internal
  */
 final class UlidIdNormalizerTest extends AppTestCase
 {

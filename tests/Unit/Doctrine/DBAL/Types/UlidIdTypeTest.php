@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AwdEs\EsLibBundle\Tests\Unit\Doctrine\DBAL\Types;
 
-use AwdEs\ValueObject\Id;
 use AwdEs\EsLibBundle\AwdEs\ValueObject\UlidId;
 use AwdEs\EsLibBundle\Tests\Shared\AppTestCase;
+use AwdEs\ValueObject\Id;
 use Symfony\Component\Uid\Ulid;
 
 use function PHPUnit\Framework\assertFalse;
@@ -16,6 +16,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\Doctrine\DBAL\Types\UlidIdType
+ *
+ * @internal
  */
 final class UlidIdTypeTest extends AppTestCase
 {
@@ -56,10 +58,12 @@ final class UlidIdTypeTest extends AppTestCase
             {
                 return false;
             }
+
             public static function fromString(string $value): static
             {
-                return new static();
+                return new self();
             }
+
             public function __toString(): string
             {
                 return 'mock';

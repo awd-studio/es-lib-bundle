@@ -13,6 +13,8 @@ use function PHPUnit\Framework\assertInstanceOf;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\System\Infrastructure\DateTimeAppClock
+ *
+ * @internal
  */
 final class DateTimeAppClockTest extends AppTestCase
 {

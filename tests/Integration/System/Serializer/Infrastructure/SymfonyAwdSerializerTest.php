@@ -36,6 +36,8 @@ final class SampleValueObject
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\System\Serializer\Infrastructure\SymfonyAwdSerializer
+ *
+ * @internal
  */
 final class SymfonyAwdSerializerTest extends AppTestCase
 {
@@ -45,7 +47,6 @@ final class SymfonyAwdSerializerTest extends AppTestCase
     protected function setUp(): void
     {
         parent::setUp();
-
 
         $objectNormalizer = new ObjectNormalizer();
 

@@ -18,14 +18,14 @@ final readonly class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('transaction_manager')
-                    ->defaultValue(NestedTransactionManagerDecorator::class)
-                    ->info('Class for the transaction manager')
-                ->end()
-                ->scalarNode('event_recorder')
-                    ->defaultNull()
-                    ->info('Optional custom event recorder class')
-                ->end()
+            ->scalarNode('transaction_manager')
+            ->defaultValue(NestedTransactionManagerDecorator::class)
+            ->info('Class for the transaction manager')
+            ->end()
+            ->scalarNode('event_recorder')
+            ->defaultNull()
+            ->info('Optional custom event recorder class')
+            ->end()
             ->end()
         ;
 

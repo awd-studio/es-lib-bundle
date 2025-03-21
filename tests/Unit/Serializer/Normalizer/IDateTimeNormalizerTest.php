@@ -17,6 +17,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\Serializer\Normalizer\IDateTimeNormalizer
+ *
+ * @internal
  */
 final class IDateTimeNormalizerTest extends AppTestCase
 {
@@ -34,7 +36,8 @@ final class IDateTimeNormalizerTest extends AppTestCase
     {
         $dateTime = $this->prophesize(IDateTime::class);
         $dateTime->format(IDateTime::DATABASE_DATETIME_MICRO_TIME_FORMAT)
-            ->willReturn('2023-10-15 14:30:00.123456');
+            ->willReturn('2023-10-15 14:30:00.123456')
+        ;
 
         $result = $this->instance->normalize($dateTime->reveal());
 

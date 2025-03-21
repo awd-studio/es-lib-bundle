@@ -18,6 +18,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\Serializer\Denormalizer\VersionDenormalizer
+ *
+ * @internal
  */
 final class VersionDenormalizerTest extends AppTestCase
 {

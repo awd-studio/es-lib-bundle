@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace AwdEs\EsLibBundle;
 
+use AwdEs\EsLibBundle\DependencyInjection\CompilerPass\EntityRegistryCompilerPass;
+use AwdEs\EsLibBundle\DependencyInjection\CompilerPass\EventRegistryCompilerPass;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\IDateTimeType;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\JsonbOrJsonType;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\UlidIdType;
 use Doctrine\DBAL\Types\Type;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
@@ -35,6 +38,16 @@ final class EsLibBundle extends AbstractBundle
         ];
 
         $builder->prependExtensionConfig('doctrine', $config);
+    }
+
+    #[\Override]
+    public function build(ContainerBuilder $container): void
+    {
+        parent::build($container);
+
+        // Add compiler passes
+        $container->addCompilerPass(new EntityRegistryCompilerPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
+        $container->addCompilerPass(new EventRegistryCompilerPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
     }
 
     #[\Override]

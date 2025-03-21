@@ -7,16 +7,16 @@ namespace AwdEs\EsLibBundle\AwdEs\Event\Record\Factory;
 use AwdEs\EsLibBundle\AwdEs\Event\Record\EntityEventRecord;
 use AwdEs\EsLibBundle\AwdEs\Id\UlidIdQueue;
 use AwdEs\EsLibBundle\System\Domain\AppClock;
+use AwdEs\EsLibBundle\System\Serializer\Domain\AwdSerializer;
 use AwdEs\Event\EntityEvent;
 use AwdEs\Meta\Entity\Reading\EntityMetaReader;
 use AwdEs\Meta\Event\Reading\EventMetaReader;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 final readonly class SerializerEntityEventRecordFactory implements EntityEventRecordFactory
 {
     public function __construct(
         private UlidIdQueue $ids,
-        private NormalizerInterface $normalizer,
+        private AwdSerializer $serializer,
         private EventMetaReader $eventMetaReader,
         private EntityMetaReader $entityMetaReader,
         private AppClock $clock,
@@ -27,8 +27,7 @@ final readonly class SerializerEntityEventRecordFactory implements EntityEventRe
     {
         $id = $this->ids->next();
 
-        /** @var array<string, mixed> $data */
-        $data = $this->normalizer->normalize($event, 'array');
+        $data = $this->serializer->serialize($event);
         $eventMeta = $this->eventMetaReader->read($event::class);
         $entityMeta = $this->entityMetaReader->read($eventMeta->entityFqn);
 

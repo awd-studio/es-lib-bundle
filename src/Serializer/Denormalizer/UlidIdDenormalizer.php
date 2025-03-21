@@ -14,7 +14,7 @@ final readonly class UlidIdDenormalizer implements DenormalizerInterface
     #[\Override]
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Id
     {
-        if (UlidId::class !== $type) {
+        if (UlidId::class !== $type && Id::class !== $type) {
             throw new InvalidArgumentException(\sprintf('Expects to "%s", "%s" provided.', UlidId::class, get_debug_type($data)));
         }
 
@@ -28,7 +28,7 @@ final readonly class UlidIdDenormalizer implements DenormalizerInterface
     #[\Override]
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return UlidId::class === $type;
+        return UlidId::class === $type || Id::class === $type;
     }
 
     #[\Override]

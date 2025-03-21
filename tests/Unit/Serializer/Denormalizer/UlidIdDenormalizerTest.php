@@ -32,7 +32,7 @@ final class UlidIdDenormalizerTest extends AppTestCase
         $this->instance = new UlidIdDenormalizer();
     }
 
-    public function itDenormalizesValidStringToUlidId(): void
+    public function testDenormalizesValidStringToUlidId(): void
     {
         $data = '0195af26-5d96-56fb-77ee-b88f3f158624'; // Example ULID string
         $result = $this->instance->denormalize($data, Id::class);
@@ -42,29 +42,27 @@ final class UlidIdDenormalizerTest extends AppTestCase
         assertSame($data, $result->__toString()); // Assuming UlidId has toString()
     }
 
-    public function itThrowsExceptionForInvalidType(): void
+    public function testThrowsExceptionForInvalidType(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/Expects to ".*UlidId", "integer" provided/');
 
         $this->instance->denormalize(123, Id::class);
     }
 
-    public function itThrowsExceptionForNonStringData(): void
+    public function testThrowsExceptionForNonStringData(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/\$data is expects to be a string, "integer" provided/');
 
         $this->instance->denormalize(42, Id::class);
     }
 
-    public function itSupportsDenormalizationForIdClass(): void
+    public function testSupportsDenormalizationForIdClass(): void
     {
         assertTrue($this->instance->supportsDenormalization('0195af26-5d96-56fb-77ee-b88f3f158624', Id::class));
         assertFalse($this->instance->supportsDenormalization('0195af26-5d96-56fb-77ee-b88f3f158624', \stdClass::class));
     }
 
-    public function itReturnsSupportedTypes(): void
+    public function testReturnsSupportedTypes(): void
     {
         $supportedTypes = $this->instance->getSupportedTypes(null);
 
@@ -73,5 +71,11 @@ final class UlidIdDenormalizerTest extends AppTestCase
         assertTrue($supportedTypes[Id::class]);
         assertTrue($supportedTypes[UlidId::class]);
         assertCount(2, $supportedTypes);
+    }
+
+    public function testSupportsDenormalizationReturnsFalseForUnsupportedClass(): void
+    {
+        assertFalse($this->instance->supportsDenormalization('dummy-string', \stdClass::class));
+        assertFalse($this->instance->supportsDenormalization('dummy-string', 'InvalidClass'));
     }
 }

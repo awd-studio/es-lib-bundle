@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AwdEs\EsLibBundle\Serializer\Normalizer;
 
+use Awd\ValueObject\DateTime;
 use Awd\ValueObject\IDateTime;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -29,6 +30,6 @@ final readonly class IDateTimeNormalizer implements NormalizerInterface
     #[\Override]
     public function getSupportedTypes(?string $format): array
     {
-        return [IDateTime::class => true];
+        return [IDateTime::class => true, DateTime::class => true];
     }
 }

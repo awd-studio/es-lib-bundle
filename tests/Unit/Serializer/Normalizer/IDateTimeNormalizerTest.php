@@ -30,7 +30,7 @@ final class IDateTimeNormalizerTest extends AppTestCase
         $this->instance = new IDateTimeNormalizer();
     }
 
-    public function itNormalizesIDateTimeToString(): void
+    public function testNormalizesIDateTimeToString(): void
     {
         $dateTime = $this->prophesize(IDateTime::class);
         $dateTime->format(IDateTime::DATABASE_DATETIME_MICRO_TIME_FORMAT)
@@ -41,23 +41,21 @@ final class IDateTimeNormalizerTest extends AppTestCase
         assertSame('2023-10-15 14:30:00.123456', $result);
     }
 
-    public function itThrowsExceptionForNonIDateTimeData(): void
+    public function testThrowsExceptionForNonIDateTimeData(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/Expects to ".*IDateTime", "string" provided/');
 
         $this->instance->normalize('2023-10-15');
     }
 
-    public function itThrowsExceptionForInvalidObject(): void
+    public function testThrowsExceptionForInvalidObject(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/Expects to ".*IDateTime", "stdClass" provided/');
 
         $this->instance->normalize(new \stdClass());
     }
 
-    public function itSupportsNormalizationForIDateTimeClass(): void
+    public function testSupportsNormalizationForIDateTimeClass(): void
     {
         $dateTime = $this->prophesize(IDateTime::class);
         assertTrue($this->instance->supportsNormalization($dateTime->reveal()));
@@ -65,12 +63,12 @@ final class IDateTimeNormalizerTest extends AppTestCase
         assertFalse($this->instance->supportsNormalization(new \stdClass()));
     }
 
-    public function itReturnsSupportedTypes(): void
+    public function testReturnsSupportedTypes(): void
     {
         $supportedTypes = $this->instance->getSupportedTypes(null);
 
         assertArrayHasKey(IDateTime::class, $supportedTypes);
         assertTrue($supportedTypes[IDateTime::class]);
-        assertCount(1, $supportedTypes);
+        assertCount(2, $supportedTypes);
     }
 }

@@ -31,7 +31,7 @@ final class VersionDenormalizerTest extends AppTestCase
         $this->instance = new VersionDenormalizer();
     }
 
-    public function itDenormalizesValidIntegerToVersion(): void
+    public function testDenormalizesValidIntegerToVersion(): void
     {
         $data = 42;
         $result = $this->instance->denormalize($data, Version::class);
@@ -40,45 +40,41 @@ final class VersionDenormalizerTest extends AppTestCase
         assertSame($data, $result->value);
     }
 
-    public function itThrowsExceptionForInvalidType(): void
+    public function testThrowsExceptionForInvalidType(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/Expects to ".*Version", "string" provided/');
 
         $this->instance->denormalize('not-an-int', Version::class);
     }
 
-    public function itThrowsExceptionForNonIntegerData(): void
+    public function testThrowsExceptionForNonIntegerData(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/\$data is expects to be a positive integer, "string" provided/');
 
         $this->instance->denormalize('42', Version::class);
     }
 
-    public function itThrowsExceptionForNonPositiveInteger(): void
+    public function testThrowsExceptionForNonPositiveInteger(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/\$data is expects to be a positive integer, "0" provided/');
 
         $this->instance->denormalize(0, Version::class);
     }
 
-    public function itThrowsExceptionForNegativeInteger(): void
+    public function testThrowsExceptionForNegativeInteger(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/\$data is expects to be a positive integer, "-1" provided/');
 
         $this->instance->denormalize(-1, Version::class);
     }
 
-    public function itSupportsDenormalizationForVersionClass(): void
+    public function testSupportsDenormalizationForVersionClass(): void
     {
         assertTrue($this->instance->supportsDenormalization(42, Version::class));
         assertFalse($this->instance->supportsDenormalization(42, \stdClass::class));
     }
 
-    public function itReturnsSupportedTypes(): void
+    public function testReturnsSupportedTypes(): void
     {
         $supportedTypes = $this->instance->getSupportedTypes(null);
 

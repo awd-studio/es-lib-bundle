@@ -26,10 +26,7 @@ final class DateTimeAppClockTest extends AppTestCase
         $this->instance = new DateTimeAppClock();
     }
 
-    /**
-     * @test
-     */
-    public function itReturnsCurrentDateTime(): void
+    public function testReturnsCurrentDateTime(): void
     {
         $result = $this->instance->now();
 

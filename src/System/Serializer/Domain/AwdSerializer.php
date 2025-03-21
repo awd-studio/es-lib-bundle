@@ -8,6 +8,8 @@ interface AwdSerializer
 {
     /**
      * @return array<string, mixed>
+     *
+     * @throws Exception\AwdSerializationError
      */
     public function serialize(object $object): array;
 
@@ -18,6 +20,8 @@ interface AwdSerializer
      * @param array<string, mixed> $data
      *
      * @return T
+     *
+     * @throws Exception\AwdDeserializationError
      */
     public function deserialize(string $type, array $data): object;
 }

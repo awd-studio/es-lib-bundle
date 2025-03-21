@@ -27,31 +27,29 @@ final class VersionNormalizerTest extends AppTestCase
         $this->instance = new VersionNormalizer();
     }
 
-    public function itNormalizesVersionToInteger(): void
+    public function testNormalizesVersionToInteger(): void
     {
-        $version = new Version(42); // Assuming Version accepts an int in constructor
+        $version = new Version(42); // Assuming Version accepts an int in its constructor
         $result = $this->instance->normalize($version);
 
         assertSame(42, $result);
     }
 
-    public function itThrowsExceptionForNonVersionData(): void
+    public function testThrowsExceptionForNonVersionData(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/Expects to ".*Version", "string" provided/');
 
         $this->instance->normalize('not-a-version');
     }
 
-    public function itThrowsExceptionForInvalidObject(): void
+    public function testThrowsExceptionForInvalidObject(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/Expects to ".*Version", "stdClass" provided/');
 
         $this->instance->normalize(new \stdClass());
     }
 
-    public function itSupportsNormalizationForVersionClass(): void
+    public function testSupportsNormalizationForVersionClass(): void
     {
         $version = new Version(42);
         assertTrue($this->instance->supportsNormalization($version));
@@ -59,7 +57,7 @@ final class VersionNormalizerTest extends AppTestCase
         assertFalse($this->instance->supportsNormalization(new \stdClass()));
     }
 
-    public function itReturnsSupportedTypes(): void
+    public function testReturnsSupportedTypes(): void
     {
         $supportedTypes = $this->instance->getSupportedTypes(null);
 

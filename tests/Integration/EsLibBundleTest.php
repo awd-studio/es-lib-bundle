@@ -17,6 +17,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\EsLibBundle
+ *
+ * @internal
  */
 final class EsLibBundleTest extends AppTestCase
 {
@@ -34,7 +36,7 @@ final class EsLibBundleTest extends AppTestCase
 
     private function createKernel(): KernelInterface
     {
-        return new class ('test', true) extends Kernel {
+        return new class('test', true) extends Kernel {
             public function registerBundles(): iterable
             {
                 return [
@@ -49,9 +51,6 @@ final class EsLibBundleTest extends AppTestCase
                     $container->loadFromExtension('doctrine', [
                         'dbal' => [
                             'url' => 'sqlite:///:memory:',
-                        ],
-                        'orm' => [
-                            'auto_mapping' => true,
                         ],
                     ]);
                 });

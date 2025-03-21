@@ -17,6 +17,8 @@ use function PHPUnit\Framework\assertSame;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\System\Serializer\Infrastructure\SymfonyAwdSerializer
+ *
+ * @internal
  */
 final class SymfonyAwdSerializerTest extends AppTestCase
 {
@@ -69,7 +71,8 @@ final class SymfonyAwdSerializerTest extends AppTestCase
         $this->normalizer
             ->normalize($this->testObject, 'array')
             ->willReturn($expectedArray)
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+        ;
 
         // Call the `serialize` method and assert the result
         $result = $this->instance->serialize($this->testObject);
@@ -88,7 +91,8 @@ final class SymfonyAwdSerializerTest extends AppTestCase
         $this->denormalizer
             ->denormalize($this->testArray, $type)
             ->willReturn($expectedObject)
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+        ;
 
         // Call the `deserialize` method and assert the result
         $result = $this->instance->deserialize($type, $this->testArray);
@@ -107,7 +111,8 @@ final class SymfonyAwdSerializerTest extends AppTestCase
         $this->denormalizer
             ->denormalize($invalidInput, $type)
             ->willThrow(new AwdDeserializationError('Cannot denormalize input'))
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+        ;
 
         // Expect the exception during `deserialize` call
         $this->expectException(AwdDeserializationError::class);

@@ -14,16 +14,20 @@ use function PHPUnit\Framework\assertSame;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\AwdEs\Event\Record\EntityEventRecord
+ *
+ * @internal
  */
 final class EntityEventRecordTest extends AppTestCase
 {
     public function testEntityEventRecordCreation(): void
     {
-        /** @var ObjectProphecy|Id $recordId */
+        /** @var Id|ObjectProphecy $recordId */
         $recordId = $this->prophesize(Id::class);
-        /** @var ObjectProphecy|Id $entityId */
+
+        /** @var Id|ObjectProphecy $entityId */
         $entityId = $this->prophesize(Id::class);
-        /** @var ObjectProphecy|IDateTime $recordedAt */
+
+        /** @var IDateTime|ObjectProphecy $recordedAt */
         $recordedAt = $this->prophesize(IDateTime::class);
 
         $eventRecord = new EntityEventRecord(

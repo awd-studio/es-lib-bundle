@@ -23,6 +23,7 @@ $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@PER-CS2.0' => true,
+        '@PhpCsFixer' => true,
         '@PHP83Migration' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,

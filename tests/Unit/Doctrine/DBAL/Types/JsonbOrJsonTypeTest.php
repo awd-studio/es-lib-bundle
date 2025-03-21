@@ -17,6 +17,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\Doctrine\DBAL\Types\JsonbOrJsonType
+ *
+ * @internal
  */
 final class JsonbOrJsonTypeTest extends AppTestCase
 {
@@ -44,7 +46,8 @@ final class JsonbOrJsonTypeTest extends AppTestCase
     {
         $this->platformProphecy
             ->hasDoctrineTypeMappingFor('jsonb')
-            ->willReturn(false);
+            ->willReturn(false)
+        ;
 
         assertSame('json', $this->instance->getSQLDeclaration([], $this->platformProphecy->reveal()));
     }
@@ -55,7 +58,8 @@ final class JsonbOrJsonTypeTest extends AppTestCase
         $pgPlatform
             ->hasDoctrineTypeMappingFor('jsonb')
             ->willReturn(true)
-            ->shouldBeCalledOnce();
+            ->shouldBeCalledOnce()
+        ;
 
         assertSame('jsonb', $this->instance->getSQLDeclaration([], $pgPlatform->reveal()));
     }

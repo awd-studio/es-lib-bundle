@@ -19,6 +19,7 @@ $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@PER-CS2.0' => true,
+        '@PhpCsFixer' => true,
         '@PHP83Migration' => true,
         '@PHPUnit75Migration:risky' => true,
         'protected_to_private' => false,

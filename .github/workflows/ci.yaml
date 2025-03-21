@@ -1,0 +1,55 @@
+name: CI Pipeline
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+
+permissions:
+    contents: read
+
+jobs:
+    build:
+        name: Run Tests
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: true
+            matrix:
+                php-versions: [ '8.3' ]
+
+        steps:
+            -   name: Checkout Repository
+                uses: actions/checkout@v3
+
+            # https://github.com/shivammathur/setup-php (community)
+            -   name: Setup PHP, extensions and composer with shivammathur/setup-php
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-versions }}
+                env:
+                    update: true
+
+            -   name: Validate composer.json and composer.lock
+                run: composer validate --strict
+
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v3
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-
+
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress
+
+            -   name: Prepare development tools
+                run: composer dev-tools-setup
+
+            -   name: Testing
+                run: composer test --no-progress

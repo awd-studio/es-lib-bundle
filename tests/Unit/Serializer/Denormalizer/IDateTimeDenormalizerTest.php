@@ -19,6 +19,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\Serializer\Denormalizer\IDateTimeDenormalizer
+ *
+ * @internal
  */
 final class IDateTimeDenormalizerTest extends AppTestCase
 {

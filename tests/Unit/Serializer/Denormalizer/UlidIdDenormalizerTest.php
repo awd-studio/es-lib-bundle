@@ -19,6 +19,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\Serializer\Denormalizer\UlidIdDenormalizer
+ *
+ * @internal
  */
 final class UlidIdDenormalizerTest extends AppTestCase
 {

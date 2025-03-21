@@ -20,6 +20,8 @@ use function PHPUnit\Framework\assertTrue;
 
 /**
  * @coversDefaultClass \AwdEs\EsLibBundle\Doctrine\DBAL\Types\IDateTimeType
+ *
+ * @internal
  */
 final class IDateTimeTypeTest extends AppTestCase
 {

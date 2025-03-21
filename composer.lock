@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "545c5d34a760a984f2be7fcd50c41349",
+    "content-hash": "c0cd21ca0cc1bbf7ca47c392170ccf27",
     "packages": [
         {
             "name": "awd-studio/es-lib",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/awd-studio/es-lib.git",
-                "reference": "aaec9e4fa08f54d7a4a0b188d254b2b6e0a05305"
+                "reference": "b31d27dcf6fe13a25c482fd8f5634a44db94ca5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awd-studio/es-lib/zipball/aaec9e4fa08f54d7a4a0b188d254b2b6e0a05305",
-                "reference": "aaec9e4fa08f54d7a4a0b188d254b2b6e0a05305",
+                "url": "https://api.github.com/repos/awd-studio/es-lib/zipball/b31d27dcf6fe13a25c482fd8f5634a44db94ca5b",
+                "reference": "b31d27dcf6fe13a25c482fd8f5634a44db94ca5b",
                 "shasum": ""
             },
             "require": {
@@ -48,15 +48,24 @@
             "authors": [
                 {
                     "name": "Anton Karpov",
-                    "email": "awd.com.ua@gmail.com"
+                    "email": "awd.com.ua@gmail.com",
+                    "role": "Developer"
                 }
             ],
-            "description": "An event-sourcing library",
+            "description": "An advanced event-sourcing library for PHP 8.3+ designed to handle domain events effectively.",
+            "homepage": "https://github.com/awd-studio/es-lib",
+            "keywords": [
+                "domain-driven-design",
+                "es",
+                "event-sourcing",
+                "library",
+                "php"
+            ],
             "support": {
                 "issues": "https://github.com/awd-studio/es-lib/issues",
-                "source": "https://github.com/awd-studio/es-lib/tree/v0.0.5-alpha"
+                "source": "https://github.com/awd-studio/es-lib"
             },
-            "time": "2025-03-19T13:15:30+00:00"
+            "time": "2025-03-21T13:04:25+00:00"
         },
         {
             "name": "awd-studio/vo-date-time",
@@ -8452,6 +8461,6 @@
     "platform": {
         "php": ">=8.3"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

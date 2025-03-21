@@ -15,7 +15,6 @@ services:
             - ${APP_ROOT_DIR}:${APP_WORK_DIR}
             - ./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini
             - ./docker/php-fpm/conf.d:/usr/local/etc/php/conf.d
-            - /home/awd/Projects:/opt/php/packages # REMOVE!!!
         extra_hosts:
             - "host.docker.internal:host-gateway"
         networks:

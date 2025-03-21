@@ -40,11 +40,15 @@ php-bash:
 ## —— ✅ Test ——————————————————————————————————————————————————————————————————
 .PHONY: tests
 tests: ## Run all tests
-	$(PHP) bin/phpunit --testdox tests/unit/
+	$(DOCKER_COMPOSE) up -d php-fpm
+	$(COMPOSER) test
+	$(DOCKER_COMPOSE) stop
 
 .PHONY: unit-test
 unit-test: ## Run unit tests
+	$(DOCKER_COMPOSE) up -d php-fpm
 	$(PHP) bin/phpunit --testdox tests/unit/
+	$(DOCKER_COMPOSE) stop
 
 ## —— 🐳 Docker ———————————————————————————————————————————————————————————————
 .PHONY: build

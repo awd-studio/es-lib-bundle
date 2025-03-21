@@ -6,6 +6,8 @@ doctrine:
             awd_datetime: AwdEs\EsLibBundle\Doctrine\DBAL\Types\IDateTimeType
 
     orm:
+        controller_resolver:
+            auto_mapping: false
         auto_generate_proxy_classes: true
         mappings:
             EsLibBundle:

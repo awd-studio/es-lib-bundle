@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace AwdEs\EsLibBundle;
 
+use AwdEs\Aggregate\Entity;
 use AwdEs\EsLibBundle\DependencyInjection\CompilerPass\EntityRegistryCompilerPass;
 use AwdEs\EsLibBundle\DependencyInjection\CompilerPass\EventRegistryCompilerPass;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\IDateTimeType;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\JsonbOrJsonType;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\UlidIdType;
+use AwdEs\Event\EntityEvent;
+use AwdEs\Event\Storage\Fetcher\Handling\CriteriaHandlingCase;
 use Doctrine\DBAL\Types\Type;
-use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
@@ -38,6 +40,21 @@ final class EsLibBundle extends AbstractBundle
         ];
 
         $builder->prependExtensionConfig('doctrine', $config);
+
+        $builder
+            ->registerForAutoconfiguration(Entity::class)
+            ->addTag(EntityRegistryCompilerPass::TAG)
+        ;
+
+        $builder
+            ->registerForAutoconfiguration(EntityEvent::class)
+            ->addTag(EventRegistryCompilerPass::TAG)
+        ;
+
+        $builder
+            ->registerForAutoconfiguration(CriteriaHandlingCase::class)
+            ->addTag('awd_es.event.storage.fetcher.handling.criteria_case')
+        ;
     }
 
     #[\Override]
@@ -46,8 +63,8 @@ final class EsLibBundle extends AbstractBundle
         parent::build($container);
 
         // Add compiler passes
-        $container->addCompilerPass(new EntityRegistryCompilerPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
-        $container->addCompilerPass(new EventRegistryCompilerPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
+        $container->addCompilerPass(new EntityRegistryCompilerPass());
+        $container->addCompilerPass(new EventRegistryCompilerPass());
     }
 
     #[\Override]

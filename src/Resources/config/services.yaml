@@ -3,16 +3,6 @@ services:
         autowire: true
         autoconfigure: true
 
-    _instanceof:
-        AwdEs\Event\Storage\Fetcher\Handling\CriteriaHandlingCase:
-            tags: [ 'awd_es.event.storage.fetcher.handling.criteria_case' ]
-
-        AwdEs\Event\EntityEvent:
-            tags: [ 'awd_es.event' ]
-
-        AwdEs\Aggregate\Entity:
-            tags: [ 'awd_es.entity' ]
-
     AwdEs\:
         resource: '%kernel.project_dir%/vendor/awd-studio/es-lib/src/'
         autowire: true

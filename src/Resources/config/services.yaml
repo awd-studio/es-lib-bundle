@@ -8,6 +8,11 @@ services:
         autowire: true
         autoconfigure: true
 
+    AwdEs\Indexes\:
+        resource: '%kernel.project_dir%/vendor/awd-studio/es-lib-indexes/src/'
+        autowire: true
+        autoconfigure: true
+
     AwdEs\EsLibBundle\:
         resource: '../../'
         exclude: '../../{DependencyInjection}'
@@ -31,3 +36,7 @@ services:
     AwdEs\Event\Storage\Fetcher\Handling\CasesEventFetcher:
         arguments:
             $cases: !tagged_iterator 'awd_es.event.storage.fetcher.handling.criteria_case'
+
+    AwdEs\EsLibBundle\AwdEs\Indexes\Record\Factory\CasesIndexRecordFactory:
+        arguments:
+            $cases: !tagged_iterator 'awd_es.index_record.factory_case'

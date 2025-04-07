@@ -111,7 +111,14 @@ final class UlidIdCollectionTest extends AppTestCase
         $ids = iterator_to_array($collection->getIterator());
 
         assertCount(2, $ids);
-        assertSame([$this->id1, $this->id2], $ids);
+        // Keys are string representations of IDs
+        $expectedKeys = [(string) $this->id1, (string) $this->id2];
+        $actualKeys = array_keys($ids);
+        $this->assertSame($expectedKeys, $actualKeys, 'Keys must match the string representation of the ULIDs.');
+
+        // Values are the original UlidId instances
+        $expectedValues = [$this->id1, $this->id2];
+        $this->assertSame($expectedValues, array_values($ids), 'Values must match the original ULID objects.');
     }
 
     public function testMustIterateWithCorrectKeys(): void

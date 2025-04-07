@@ -14,5 +14,5 @@ doctrine:
                 is_bundle: true
                 type: xml
                 dir: 'src/Resources/config/doctrine'
-                prefix: 'AwdEs\EsLibBundle\AwdEs\Event\Record'
+                prefix: 'AwdEs\EsLibBundle\AwdEs'
                 alias: EsLibBundle

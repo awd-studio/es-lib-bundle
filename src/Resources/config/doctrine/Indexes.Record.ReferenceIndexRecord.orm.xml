@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AwdEs\EsLibBundle\AwdEs\Indexes\Record\ReferenceIndexRecord" table="es_index_record_reference">
+        <!-- Primary Key -->
+        <id name="recordId" column="id" type="ulid_id">
+            <generator strategy="NONE"/>
+        </id>
+
+        <!-- Columns -->
+        <field name="indexName" column="index_name" type="string" length="255" nullable="false"/>
+        <field name="entityName" column="entity_name" type="string" length="255" nullable="false"/>
+        <field name="entityId" column="entity_id" type="ulid_id" nullable="false"/>
+        <field name="value" column="value" type="awd_datetime" nullable="false"/>
+        <field name="recordedAt" column="recorded_at" type="awd_datetime" nullable="false"/>
+
+        <!-- Unique Constraints -->
+        <unique-constraints>
+            <unique-constraint columns="id" name="index_record_reference_id_unique"/>
+        </unique-constraints>
+
+        <!-- Indexes -->
+        <indexes>
+            <index name="idx_es_index_record_reference_entity_name" columns="entity_name"/>
+            <index name="idx_es_index_record_reference_entity_id" columns="entity_id"/>
+            <index name="idx_es_index_record_reference_index_name" columns="index_name"/>
+            <index name="idx_es_index_record_reference_index_value" columns="value"/>
+            <index name="idx_es_index_record_reference_entity_name_entity_id" columns="entity_name,entity_id"/>
+            <index name="idx_es_index_record_reference_index_name_entity_id" columns="index_name,entity_id"/>
+        </indexes>
+    </entity>
+
+</doctrine-mapping>

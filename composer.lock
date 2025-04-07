@@ -73,12 +73,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/awd-studio/es-lib-indexes.git",
-                "reference": "f8bd4bc1bd66a5c343f173b9b9b3c78d3a4f1a66"
+                "reference": "0451fb726e9f97b16d43da75fca084b9f81eba1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awd-studio/es-lib-indexes/zipball/f8bd4bc1bd66a5c343f173b9b9b3c78d3a4f1a66",
-                "reference": "f8bd4bc1bd66a5c343f173b9b9b3c78d3a4f1a66",
+                "url": "https://api.github.com/repos/awd-studio/es-lib-indexes/zipball/0451fb726e9f97b16d43da75fca084b9f81eba1b",
+                "reference": "0451fb726e9f97b16d43da75fca084b9f81eba1b",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 "issues": "https://github.com/awd-studio/es-lib-indexes/issues",
                 "source": "https://github.com/awd-studio/es-lib-indexes"
             },
-            "time": "2025-04-02T10:21:44+00:00"
+            "time": "2025-04-07T13:53:25+00:00"
         },
         {
             "name": "awd-studio/vo-date-time",

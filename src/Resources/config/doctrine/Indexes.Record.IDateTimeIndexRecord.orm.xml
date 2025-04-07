@@ -4,9 +4,9 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="AwdEs\EsLibBundle\AwdEs\Indexes\Record\StringIndexRecord" table="index_record_string">
+    <entity name="AwdEs\EsLibBundle\AwdEs\Indexes\Record\IDateTimeIndexRecord" table="es_index_record_idate_time">
         <!-- Primary Key -->
-        <id name="recordId" column="record_id" type="ulid_id">
+        <id name="recordId" column="id" type="ulid_id">
             <generator strategy="NONE"/>
         </id>
 
@@ -14,22 +14,22 @@
         <field name="indexName" column="index_name" type="string" length="255" nullable="false"/>
         <field name="entityName" column="entity_name" type="string" length="255" nullable="false"/>
         <field name="entityId" column="entity_id" type="ulid_id" nullable="false"/>
-        <field name="value" column="value" type="string" nullable="false"/>
+        <field name="value" column="value" type="idate_time" nullable="false"/>
         <field name="recordedAt" column="recorded_at" type="awd_datetime" nullable="false"/>
 
         <!-- Unique Constraints -->
         <unique-constraints>
-            <unique-constraint columns="id" name="index_record_string_record_id_unique"/>
+            <unique-constraint columns="id" name="index_record_idate_time_id_unique"/>
         </unique-constraints>
 
         <!-- Indexes -->
         <indexes>
-            <index name="idx_entity_name" columns="entity_name"/>
-            <index name="idx_entity_id" columns="entity_id"/>
-            <index name="idx_index_name" columns="index_name"/>
-            <index name="idx_index_value" columns="value"/>
-            <index name="idx_entity_name_entity_id" columns="entity_name, entity_id"/>
-            <index name="idx_index_name_entity_id" columns="index_name, entity_id"/>
+            <index name="idx_es_index_record_idate_time_entity_name" columns="entity_name"/>
+            <index name="idx_es_index_record_idate_time_entity_id" columns="entity_id"/>
+            <index name="idx_es_index_record_idate_time_index_name" columns="index_name"/>
+            <index name="idx_es_index_record_idate_time_index_value" columns="value"/>
+            <index name="idx_es_index_record_idate_time_entity_name_entity_id" columns="entity_name,entity_id"/>
+            <index name="idx_es_index_record_idate_time_index_name_entity_id" columns="index_name,entity_id"/>
         </indexes>
     </entity>
 

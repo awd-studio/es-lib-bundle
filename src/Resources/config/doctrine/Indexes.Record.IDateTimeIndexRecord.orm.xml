@@ -14,7 +14,7 @@
         <field name="indexName" column="index_name" type="string" length="255" nullable="false"/>
         <field name="entityName" column="entity_name" type="string" length="255" nullable="false"/>
         <field name="entityId" column="entity_id" type="ulid_id" nullable="false"/>
-        <field name="value" column="value" type="idate_time" nullable="false"/>
+        <field name="value" column="value" type="awd_datetime" nullable="false"/>
         <field name="recordedAt" column="recorded_at" type="awd_datetime" nullable="false"/>
 
         <!-- Unique Constraints -->

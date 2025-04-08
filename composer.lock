@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/awd-studio/es-lib.git",
-                "reference": "5f2be5b7ec849c9e857ddae49c2ecd1d006090de"
+                "reference": "58c797d73ebcd8c6464ed245a88973c7d30435b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awd-studio/es-lib/zipball/5f2be5b7ec849c9e857ddae49c2ecd1d006090de",
-                "reference": "5f2be5b7ec849c9e857ddae49c2ecd1d006090de",
+                "url": "https://api.github.com/repos/awd-studio/es-lib/zipball/58c797d73ebcd8c6464ed245a88973c7d30435b2",
+                "reference": "58c797d73ebcd8c6464ed245a88973c7d30435b2",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "issues": "https://github.com/awd-studio/es-lib/issues",
                 "source": "https://github.com/awd-studio/es-lib"
             },
-            "time": "2025-04-07T12:01:34+00:00"
+            "time": "2025-04-08T08:15:39+00:00"
         },
         {
             "name": "awd-studio/es-lib-indexes",
@@ -73,12 +73,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/awd-studio/es-lib-indexes.git",
-                "reference": "0451fb726e9f97b16d43da75fca084b9f81eba1b"
+                "reference": "f562295b1ce391fdac45b79d577759f9a7be8908"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awd-studio/es-lib-indexes/zipball/0451fb726e9f97b16d43da75fca084b9f81eba1b",
-                "reference": "0451fb726e9f97b16d43da75fca084b9f81eba1b",
+                "url": "https://api.github.com/repos/awd-studio/es-lib-indexes/zipball/f562295b1ce391fdac45b79d577759f9a7be8908",
+                "reference": "f562295b1ce391fdac45b79d577759f9a7be8908",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 "issues": "https://github.com/awd-studio/es-lib-indexes/issues",
                 "source": "https://github.com/awd-studio/es-lib-indexes"
             },
-            "time": "2025-04-07T13:53:25+00:00"
+            "time": "2025-04-08T09:30:45+00:00"
         },
         {
             "name": "awd-studio/vo-date-time",
@@ -467,26 +467,29 @@
         },
         {
             "name": "doctrine/deprecations",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/deprecations.git",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9"
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/31610dbb31faa98e6b5447b62340826f54fbc4e9",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
+            "conflict": {
+                "phpunit/phpunit": "<=7.5 || >=13"
+            },
             "require-dev": {
-                "doctrine/coding-standard": "^9 || ^12",
-                "phpstan/phpstan": "1.4.10 || 2.0.3",
+                "doctrine/coding-standard": "^9 || ^12 || ^13",
+                "phpstan/phpstan": "1.4.10 || 2.1.11",
                 "phpstan/phpstan-phpunit": "^1.0 || ^2",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12",
                 "psr/log": "^1 || ^2 || ^3"
             },
             "suggest": {
@@ -506,9 +509,9 @@
             "homepage": "https://www.doctrine-project.org/",
             "support": {
                 "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/1.1.4"
+                "source": "https://github.com/doctrine/deprecations/tree/1.1.5"
             },
-            "time": "2024-12-07T21:18:45+00:00"
+            "time": "2025-04-07T20:06:18+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",

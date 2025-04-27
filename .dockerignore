@@ -1,39 +1,49 @@
+# Logs and cache files
 **/*.log
-**/*.md
-**/*.php~
-**/*.dist.php
-**/*.dist
 **/*.cache
+
+# Temporary and backup files
+**/*.php~
 **/._*
-**/.dockerignore
+**/*.dist
+**/*.dist.php
+
+# Documentation files
+**/*.md
+docs/
+
+# OS-specific artifacts
 **/.DS_Store
+**/Thumbs.db
+
+# Git files
 **/.git/
 **/.gitattributes
 **/.gitignore
 **/.gitmodules
+
+# Docker-related files
+**/.dockerignore
+**/Dockerfile
+**/docker-compose*.yml
+
+# Build tools and config files
+.editorconfig
 **/compose.*.yaml
 **/compose.*.yml
-**/compose.yaml
-**/compose.yml
-**/docker-compose.*.yaml
-**/docker-compose.*.yml
-**/docker-compose.yaml
-**/docker-compose.yml
-**/Dockerfile
-**/Thumbs.db
-.github/
-docs/
-public/bundles/
-tests/
-var/
+
+# Symfony-specific folders
 vendor/
-.editorconfig
-.env.*.local
+var/
+tools/cache/
+tools/logs/
+tools/report/
+tools/**/vendor
+public/bundles/
+
+# Testing and environment files
+tests/
 .env.local
 .env.local.php
 .env.test
-
-tools/cache/*
-tools/logs/*
-tools/report/*
-tools/**/vendor
+.env.*.local

@@ -5,16 +5,13 @@ declare(strict_types=1);
 namespace AwdEs\EsLibBundle;
 
 use AwdEs\Aggregate\Entity;
-use AwdEs\EsLibBundle\AwdEs\Indexes\Record\Factory\IndexRecordFactoryCase;
 use AwdEs\EsLibBundle\DependencyInjection\CompilerPass\EntityRegistryCompilerPass;
 use AwdEs\EsLibBundle\DependencyInjection\CompilerPass\EventRegistryCompilerPass;
-use AwdEs\EsLibBundle\DependencyInjection\CompilerPass\IndexRegistryCompilerPass;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\IDateTimeType;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\JsonbOrJsonType;
 use AwdEs\EsLibBundle\Doctrine\DBAL\Types\UlidIdType;
 use AwdEs\Event\EntityEvent;
 use AwdEs\Event\Storage\Fetcher\Handling\CriteriaHandlingCase;
-use AwdEs\Indexes\Index;
 use Doctrine\DBAL\Types\Type;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -55,18 +52,8 @@ final class EsLibBundle extends AbstractBundle
         ;
 
         $builder
-            ->registerForAutoconfiguration(Index::class)
-            ->addTag(IndexRegistryCompilerPass::TAG)
-        ;
-
-        $builder
             ->registerForAutoconfiguration(CriteriaHandlingCase::class)
             ->addTag('awd_es.event.storage.fetcher.handling.criteria_case')
-        ;
-
-        $builder
-            ->registerForAutoconfiguration(IndexRecordFactoryCase::class)
-            ->addTag('awd_es.index_record.factory_case')
         ;
     }
 
@@ -78,7 +65,6 @@ final class EsLibBundle extends AbstractBundle
         // Add compiler passes
         $container->addCompilerPass(new EntityRegistryCompilerPass());
         $container->addCompilerPass(new EventRegistryCompilerPass());
-        $container->addCompilerPass(new IndexRegistryCompilerPass());
     }
 
     #[\Override]

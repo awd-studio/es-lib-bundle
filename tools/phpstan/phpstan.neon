@@ -4,8 +4,8 @@ parameters:
 		- ../../src
 #		- ../../tests
 
-	ignoreErrors:
-		-
-		    identifier: missingType.generics
+#	ignoreErrors:
+#		-
+#		    identifier: missingType.generics
 
 	tmpDir: ../cache/phpstan

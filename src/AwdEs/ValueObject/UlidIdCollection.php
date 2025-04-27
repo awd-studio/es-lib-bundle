@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace AwdEs\EsLibBundle\AwdEs\ValueObject;
 
-use AwdEs\Indexes\ValueObject\IdCollection;
 use AwdEs\ValueObject\Id;
+use AwdEs\ValueObject\IdCollection;
 
 final readonly class UlidIdCollection implements IdCollection
 {

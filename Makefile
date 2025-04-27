@@ -2,9 +2,6 @@
 include .env
 export
 
-USER_ID := $(shell id -u)
-GROUP_ID := $(shell id -g)
-
 # Variables
 DOCKER = docker
 DOCKER_COMPOSE = docker compose

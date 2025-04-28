@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/awd-studio/es-lib.git",
-                "reference": "22564a901ef4238c4063f00be48e5ccf6b3caff0"
+                "reference": "b6ad8628a36bf6bdb33604200aeae130ce7c2d77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awd-studio/es-lib/zipball/22564a901ef4238c4063f00be48e5ccf6b3caff0",
-                "reference": "22564a901ef4238c4063f00be48e5ccf6b3caff0",
+                "url": "https://api.github.com/repos/awd-studio/es-lib/zipball/b6ad8628a36bf6bdb33604200aeae130ce7c2d77",
+                "reference": "b6ad8628a36bf6bdb33604200aeae130ce7c2d77",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "issues": "https://github.com/awd-studio/es-lib/issues",
                 "source": "https://github.com/awd-studio/es-lib"
             },
-            "time": "2025-04-27T07:54:18+00:00"
+            "time": "2025-04-28T10:18:34+00:00"
         },
         {
             "name": "awd-studio/vo-date-time",

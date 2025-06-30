@@ -1,5 +1,7 @@
 #!make
 
+.DEFAULT_GOAL := help
+
 # ———————————————————————— 🔧 Environment Imports ———————————————————————————————
 -include .env.dist
 -include .env
@@ -8,7 +10,7 @@
 export
 
 # ———————————————————————— 🧩 Variables —————————————————————————————————————————
-MERGED_FILE := .env.merged
+MERGED_FILE := .env
 ENV_SOURCES := $(wildcard .env.dist .env .env.$(APP_ENV) .env.override)
 
 # Docker command helpers
@@ -16,7 +18,7 @@ DOCKER = docker
 MAKE_SILENT = @$(MAKE) --no-print-directory
 
 # Docker Compose with auto env-merge
-DOCKER_COMPOSE = $(MAKE_SILENT) env-merge >/dev/null && docker compose --env-file .env.merged
+DOCKER_COMPOSE = $(MAKE_SILENT) env-merge >/dev/null && docker compose --env-file $(MERGED_FILE)
 
 # Log formatting helpers
 GREEN = /bin/echo -e "\x1b[32m\#\# $1\x1b[0m"
@@ -30,7 +32,6 @@ COMPOSER = $(EXEC) composer
 ## ————————————————— 🔥 Project Lifecycle ———————————————————————————————————————
 .PHONY: init
 init: ## Init the project
-	$(MAKE_SILENT) env-merge
 	$(DOCKER_COMPOSE) build
 	$(MAKE_SILENT) start
 	$(COMPOSER) install --prefer-dist
@@ -66,9 +67,9 @@ down: ## Completely remove all containers
 	@$(call GREEN,"The containers are now down.")
 
 .PHONY: php
-php: ## Open PHP container shell
+php: ## Open Bash shell inside PHP container
 	$(DOCKER_COMPOSE) up -d php-fpm
-	$(DOCKER_COMPOSE) exec --user www-data php-fpm bash -l
+	$(DOCKER_COMPOSE) exec php-fpm bash -l
 
 ## ————————————————— ✅️ Quality & Testing ———————————————————————————————————————
 .PHONY: tests
@@ -88,6 +89,11 @@ unit-tests: ## Run unit tests
 	$(DOCKER_COMPOSE) up -d php-fpm
 	$(PHP) vendor/bin/phpunit --testdox tests/Unit/
 	$(DOCKER_COMPOSE) stop
+
+.PHONY: code-fix
+code-fix: ## Runs quality tools to fix common issues
+	$(DOCKER_COMPOSE) up -d
+	$(COMPOSER) code-fix
 
 .PHONY: cache-clear
 cache-clear: ## Clear Symfony cache
@@ -112,19 +118,19 @@ composer-normalize: ## Normalize composer dependencies
 
 ## ————————————————— 🛠️ Utilities ——————————————————————————————————————————————
 .PHONY: env-merge
-env-merge: ## Generate .env.merged from all env layers
+env-merge: ## Generate $(MERGED_FILE) from all env layers
 	@NEW_ENV=$$(cat /dev/null \
 		$(shell [ -f .env.dist ] && echo .env.dist) \
 		$(shell [ -f .env ] && echo .env) \
 		$(shell [ -f .env.dev ] && echo .env.dev) \
 		$(shell [ -f .env.override ] && echo .env.override) \
 		| grep -v '^#' | grep -v '^\s*$$' | awk -F= '!seen[$$1]++'); \
-	OLD_ENV=$$(cat .env.merged 2>/dev/null || echo ""); \
+	OLD_ENV=$$(cat $(MERGED_FILE) 2>/dev/null || echo ""); \
 	if [ "$$NEW_ENV" != "$$OLD_ENV" ]; then \
-		echo "$$NEW_ENV" > .env.merged; \
-		echo "🔄 Regenerated .env.merged"; \
+		echo "$$NEW_ENV" > $(MERGED_FILE); \
+		echo "🔄 Regenerated $(MERGED_FILE)"; \
 	else \
-		echo "✅ .env.merged is up to date."; \
+		echo "✅ $(MERGED_FILE) is up to date."; \
 	fi
 
 ## ————————————————— 📚 Help ————————————————————————————————————————————————————
